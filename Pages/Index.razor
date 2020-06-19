@@ -1,6 +1,6 @@
 ﻿@page "/"
+@inject IJSRuntime jsRuntime
 
-<img src="TheModernParent.png" alt="The Modern Parent" width="400" />
 <!DOCTYPE HTML>
 <!--
     Massively by HTML5 UP
@@ -41,7 +41,19 @@
         </header>
 
         <!-- Nav -->
-        <SiMenu />
+        <nav id="nav">
+            <ul class="links">
+                <li class="active"><a href="index.html">This is Massively</a></li>
+                <li><a href="generic.html">Generic Page</a></li>
+                <li><a href="elements.html">Elements Reference</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </nav>
 
         <!-- Main -->
         <div id="main">
@@ -245,12 +257,31 @@
 
     <!-- Scripts -->
     @*<script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>*@
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>*@
 
 </body>
 </html>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // invoke script loader
+        Console.WriteLine("sac Loading jQuery");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/jquery.min.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/jquery.scrollex.min.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/jquery.scrolly.min.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/browser.min.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/breakpoints.min.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/util.js");
+        await jsRuntime.InvokeVoidAsync("loadScript", "assets/js/main.js");
+
+        Console.WriteLine("sac done JQuery");
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
