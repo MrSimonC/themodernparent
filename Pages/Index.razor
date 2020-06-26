@@ -32,7 +32,7 @@
         <!-- Featured Post -->
         <article class="post featured">
             <header class="major">
-                <span class="date"></span>
+                <span class="date">@timeNow</span>
                 <h2>
                     <a href="#">
                         And this is a<br />
@@ -227,6 +227,13 @@
 </div>
 
 @code {
+    private string timeNow;
+
+    protected override void OnInitialized()
+    {
+        timeNow = DateTime.Now.ToString("dd/MM/yy");
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await jsRuntime.InvokeVoidAsync("simonFunctions.setBodyClass", "is-preload");
