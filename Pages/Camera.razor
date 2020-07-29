@@ -1,0 +1,15 @@
+﻿@page "/camera"
+@inject IJSRuntime jsRuntime
+<h3>Camera</h3>
+
+<video id="player" controls autoplay></video>
+<button id="capture">Capture</button>
+<canvas id="canvas" width=320 height=240></canvas>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await jsRuntime.InvokeVoidAsync("cameraFunctions.setup", null);
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
