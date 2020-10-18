@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using TheModernParent.Shared;
 
 namespace TheModernParent.Api
-{ 
+{
     public static class WeatherForecastFunction
     {
         private static string GetSummary(int temp)
