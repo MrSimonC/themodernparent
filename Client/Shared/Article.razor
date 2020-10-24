@@ -1,0 +1,36 @@
+﻿<article>
+    <header>
+        <span class="date">@Date</span>
+        <h2>
+            <a href="#">
+                @Header
+            </a>
+        </h2>
+    </header>
+    <a href="#" class="image fit"><img src="@ImageUrl" alt="" /></a>
+    <p>@Description</p>
+    <ul class="actions special">
+        <li><a href="@LinkUrl" class="button">@LinkText</a></li>
+    </ul>
+</article>
+
+@code {
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    [Parameter]
+    public string Header { get; set; }
+
+    [Parameter]
+    public string ImageUrl { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    public string LinkUrl { get; set; }
+
+    [Parameter]
+    public string LinkText { get; set; } = "Full Story";
+
+}
