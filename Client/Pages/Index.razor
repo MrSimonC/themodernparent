@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IJSRuntime jsRuntime
+
 <!-- Wrapper -->
 <div id="wrapper" class="fade-in">
 
@@ -27,7 +28,12 @@
     <div id="main">
 
         <!-- Featured Post -->
-        <FeaturedPost />
+        <FeaturedPost   Date=@DateTime.Parse("2020-10-01")
+                        Header="And this is a<br />massive headline2"
+                        ImageUrl="images/pic01.jpg"
+                        Description="Sac Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />amet nullam sed etiam veroeros."
+                        LinkUrl="#"
+                        LinkText="Read full story" />
 
         <!-- Posts -->
         <section class="posts">
@@ -163,6 +169,13 @@
 @code {
     private string timeNow;
 
+    //private string RenderHtmlContent(string value) => Markdig.Markdown.ToHtml(
+    //    markdown: value,
+    //    pipeline: new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()
+    //);
+
+    private string MarkdownContent = "* hello simon bullet!";
+
     protected override void OnInitialized()
     {
         timeNow = DateTime.Now.ToString("dd/MM/yy");
@@ -181,4 +194,5 @@
 
         await base.OnAfterRenderAsync(firstRender);
     }
+
 }

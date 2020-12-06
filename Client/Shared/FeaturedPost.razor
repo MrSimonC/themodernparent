@@ -1,21 +1,37 @@
 ﻿<article class="post featured">
     <header class="major">
-        @*<span class="date">@timeNow</span>
-        <button class="btn btn-primary" @onclick="UpdateTime">Click me</button>*@
         <h2>
             <a href="#">
-                And this is a<br />
-                massive headline
+                @((MarkupString)Header)
             </a>
         </h2>
         <p>
-            Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-            facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-            amet nullam sed etiam veroeros.
+            @((MarkupString)Description)
         </p>
     </header>
-    <a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
+    <a href="#" class="image main"><img src="@ImageUrl" alt="" /></a>
     <ul class="actions special">
-        <li><a href="#" class="button large">Full Story</a></li>
+        <li><a href="@LinkUrl" class="button large">@LinkText</a></li>
     </ul>
 </article>
+
+@code {
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    [Parameter]
+    public string Header { get; set; }
+
+    [Parameter]
+    public string ImageUrl { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    public string LinkUrl { get; set; }
+
+    [Parameter]
+    public string LinkText { get; set; } = "Full Story";
+
+}
