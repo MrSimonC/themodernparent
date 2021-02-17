@@ -1,6 +1,6 @@
-﻿<article>
-    <header>
-        <span class="date">@Date.ToLongDateString()</span>
+﻿<article class="@articleClass">
+    <header class="@headerClass">
+        <span class="date">@Date?.ToLongDateString()</span>
         <h2>
             <a href="#">
                 @Header
@@ -16,7 +16,10 @@
 
 @code {
     [Parameter]
-    public DateTime Date { get; set; }
+    public bool FeaturedPost { get; set; } = false;
+
+    [Parameter]
+    public DateTime? Date { get; set; }
 
     [Parameter]
     public string Header { get; set; }
@@ -33,4 +36,15 @@
     [Parameter]
     public string LinkText { get; set; } = "Full Story";
 
+    private string articleClass = "";
+    private string headerClass = "";
+
+    protected override void OnInitialized()
+    {
+        if (FeaturedPost)
+        {
+            articleClass = "post featured";
+            headerClass = "major";
+        }
+    }
 }
